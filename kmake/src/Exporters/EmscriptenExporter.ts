@@ -22,7 +22,7 @@ export class EmscriptenExporter extends Exporter {
 		let debugDirName = project.getDebugDir();
 		debugDirName = debugDirName.replace(/\\/g, '/');
 		if (debugDirName.endsWith('/')) debugDirName = debugDirName.substr(0, debugDirName.length - 1);
-		if (debugDirName.lastIndexOf('/') >= 0) debugDirName = debugDirName.substr(debugDirName.lastIndexOf('/') + 1);
+		// if (debugDirName.lastIndexOf('/') >= 0) debugDirName = debugDirName.substr(debugDirName.lastIndexOf('/') + 1);
 
 		fs.copyDirSync(path.resolve(from, debugDirName), path.resolve(outputPath, debugDirName));
 

@@ -124,8 +124,12 @@ class Framework {
 	}
 
 	toString() {
-		if (this.name.indexOf('.') < 0) return this.name + '.framework';
-		else return this.name;
+		let str = this.name;
+    if (str.indexOf('/') > 0) {
+      str = str.substring(str.lastIndexOf('/') + 1);
+    }
+		if (str.indexOf('.') < 0) return str + '.framework';
+		else return str;
 	}
 
 	getBuildId() {
@@ -383,7 +387,7 @@ export class XCodeExporter extends Exporter {
 				}
 			}
 			else {
-				framework.localPath = path.resolve(from, framework.toString());
+        framework.localPath = path.resolve(from, framework.name);
 				this.p(framework.getFileId() + ' /* ' + framework.toString() + ' */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = ' + framework.toString() + '; path = ' + framework.localPath + '; sourceTree = "<group>"; };', 2);
 			}
 		}
